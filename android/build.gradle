@@ -1,0 +1,48 @@
+group 'sale.clear.behavior_analytics'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://pkgs.dev.azure.com/PublicPackagesCS/Behavior/_packaging/BehaviorAnalytics.SDK/maven/v1'
+            name 'BehaviorAnalytics.SDK.Android'
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+
+    namespace 'sale.clear.behavior_analytics'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+}
+
+dependencies {
+    implementation 'sale.clear.behavior:sdk-behavior:3.0.2'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+    api 'com.google.android.gms:play-services-location:20.0.0'
+    api 'com.google.code.gson:gson:2.8.9'
+}
